@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.doding.mybatis.model.repo.CountryRepo">
+	<insert id="insert" parameterType="Country">
+		insert into country
+		<!-- 테이블에 있는 컬럼 이름들 -->
+		(Code,Name,Continent,Region,SurfaceArea,IndepYear,Population,LifeExpectancy,
+		GNP,GNPOld,LocalName,GovernmentForm,HeadOfState,Capital,Code2)
+		<!-- value의 값들은 파라미터인 Country의 속성 명 -->
+		values(#{code},#{name},#{continent},#{region},#{surfaceArea},#{indepYear},#{population},#{lifeExpectancy}
+		,#{GNP},
+		#{GNPOld},#{localName},#{governmentForm},#{headOfState},#{capital},#{code2}
+		)
+	</insert>
+	<select id="select" resultType="country" parameterType="string">
+		select *
+		from country where code=#{code}
+	</select>
+	<select id="selectRange" resultType="Country"
+		parameterType="map">
+		select * from country limit #{from} , #{perPage}
+	</select>
+	<update id="update" parameterType="Country">
+		update country
+		set Name=#{name}, Continent=#{continent}, Region=#{region},
+		SurfaceArea=#{surfaceArea},
+		IndepYear=#{indepYear}, Population=#{population}, LifeExpectancy=#{lifeExpectancy},
+		GNP=#{GNP}, GNPOld=#{GNPOld}, LocalName=#{localName},
+		GovernmentForm=#{governmentForm},
+		HeadOfState=#{headOfState}, Capital=#{capital}, Code2=#{code2}
+		where Code=#{code}
+	</update>
+<delete id="delete" parameterType="string">
+    delete from country where code=#{code}
+</delete>
+
+	<select id="search" resultType="Country" parameterType="map">
+		select * from country
+		where ${column} = #{value}
+	</select>
+
+
+</mapper>

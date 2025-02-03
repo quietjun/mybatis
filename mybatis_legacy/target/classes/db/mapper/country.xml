@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.doding.mybatis.model.repo.CountryRepo">
+	<insert id="insert" parameterType="Country">
+		insert into country
+		<!-- 테이블에 있는 컬럼 이름들 -->
+		(Code,Name,Continent,Region,SurfaceArea,IndepYear,Population,LifeExpectancy,
+		GNP,GNPOld,LocalName,GovernmentForm,HeadOfState,Capital,Code2)
+		<!-- value의 값들은 파라미터인 Country의 속성 명 -->
+		values(#{code},#{name},#{continent},#{region},#{surfaceArea},#{indepYear},#{population},#{lifeExpectancy}
+		,#{GNP},
+		#{GNPOld},#{localName},#{governmentForm},#{headOfState},#{capital},#{code2}
+		)
+	</insert>
+
+<select id="select" resultType="country" parameterType="string">
+    select * from country where code=#{code}
+</select>
+</mapper>

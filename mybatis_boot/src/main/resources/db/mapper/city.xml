@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.doding.mybatis.model.repo.CityRepo">
+	<select id="select" resultMap="cityBase" parameterType="int">
+		select * from city where id=#{id}
+	</select>
+
+	<select id="selectByCountry" resultMap="cityBase" parameterType="string">
+		select * from city where countryCode=#{code}
+	</select>
+	
+	<resultMap type="City" id="cityBase">
+		<id column="id" property="id"/>
+		<result column="Name" property="name"/>
+		<result column="CountryCode" property="countryCode"/>
+		<result column="District" property="district"/>
+		<result column="Population" property="population"/>
+	</resultMap>
+</mapper>
